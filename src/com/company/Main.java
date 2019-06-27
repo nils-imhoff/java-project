@@ -10,7 +10,8 @@ public class Main {
         ArrayList<String> genreArg = new ArrayList<>();
         ArrayList<String> schauspielerArg = new ArrayList<>();
         ArrayList<String> filmArg = new ArrayList<>();
-        ArrayList<String> regisseurArg = new ArrayList<>();
+        ArrayList<String> filmnetzwerkArg = new ArrayList<>();
+        ArrayList<String> schauspielernetzwerkArg = new ArrayList<>();
 
         String limitArg = "200";
         Integer limit;
@@ -26,6 +27,10 @@ public class Main {
                     schauspielerArg = extractArguments(s);
                 } else if (s.contains("--film=")) {
                     filmArg = extractArguments(s);
+                } else if (s.contains("--filmnetzwerk")) {
+                    filmnetzwerkArg = extractArguments(s);
+                } else if (s.contains("--schauspielernetzwerk")){
+                    schauspielernetzwerkArg = extractArguments(s);
                 }
             }
             if(filmArg.size()>=1);
@@ -34,7 +39,11 @@ public class Main {
             if(schauspielerArg.size()>=1);
                 filmDB.sucheSchauspieler(schauspielerArg);
 
+            if(filmnetzwerkArg.size()>=1);
+                filmDB.netwerkFilm(filmnetzwerkArg);
 
+            if(schauspielernetzwerkArg.size() >= 1);
+                    filmDB.netwerkSchauspieler(schauspielernetzwerkArg);
 
         }
     }
