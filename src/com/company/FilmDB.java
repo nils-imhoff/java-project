@@ -128,13 +128,13 @@ public class FilmDB {
             }
         }
     }
-
     void netwerkFilm (ArrayList<String> params ) {
+
         ArrayList<Schauspieler> schauspielers = new ArrayList<>();
         ArrayList<Film> films = new ArrayList<>();
         Film suchFilm = null;
-        int o = 0;
         boolean enthalten = false;
+        String comma = "";
 
         for(int i = 0; i < params.size(); i++) {
             int p = Integer.parseInt(params.get(i));
@@ -144,38 +144,39 @@ public class FilmDB {
 
             }
             if(suchFilm != null){
-                System.out.println("Schauspieler:");
+                System.out.print("Schauspieler: ");
             for (int l = 0; l < suchFilm.getSchauspieler().size(); l++) {
                 for (Schauspieler werts : schauspieler.values()) {
                     if (suchFilm.getSchauspieler().get(l).equals(werts.getSchauspielerID())) {
                         schauspielers.add(werts);
-                        System.out.print(werts.getName() + "," );
+                        System.out.print(comma + werts.getName());
+                        comma = ",";
                     }
 
                 }
             }
-
-            System.out.println("\nFilme:");
+            comma ="";
+            System.out.print("\r\nFilme:");
             for (int m = 0; m < schauspielers.size(); m++) {
                 for (Film wertf : film.values()) {
                     for (int n = 0; n < schauspielers.get(m).getFilme().size(); n++) {
                         if (schauspielers.get(m).getFilme().get(n).equals(wertf.getFilmID())) {
                             if (!wertf.equals(suchFilm)) {
                                 if (films.size() > 0) {
-                                    while (o < films.size()) {
+                                   for(int o = 0; o < films.size(); o++) {
                                         if (wertf.equals(films.get(o))) {
                                             enthalten = true;
                                             break;
-                                        } else {
-                                            o++;
                                         }
-
                                     }
 
                                 }
                                 if (!enthalten) {
                                     films.add(wertf);
-                                    System.out.print(wertf.getFilmTitel() +", ");
+                                    System.out.print(comma + wertf.getFilmTitel());
+                                    comma = ",";
+                                } else {
+                                    enthalten = false;
                                 }
                             }
                         }
@@ -184,15 +185,14 @@ public class FilmDB {
             }
 
 
-
         }}}
 
     void netwerkSchauspieler (ArrayList<String> params){
         ArrayList<Schauspieler> schauspielers = new ArrayList<>();
         ArrayList<Film> films = new ArrayList<>();
         Schauspieler suchSchauspieler = null;
-        int o = 0;
         boolean enthalten = false;
+        String comma = "";
 
         for (int i = 0; i < params.size(); i++){
             int p = Integer.parseInt(params.get(i));
@@ -201,36 +201,41 @@ public class FilmDB {
                     suchSchauspieler = value;
             }
             if(suchSchauspieler != null){
-                System.out.println("Filme:");
+                System.out.print("Filme:");
                 for (int l = 0; l < suchSchauspieler.getFilme().size(); l++){
                     for (Film wertf : film.values()){
                         if(suchSchauspieler.getFilme().get(l).equals(wertf.getFilmID())){
                             films.add(wertf);
-                            System.out.print(wertf.getFilmTitel() + ",");
+                            System.out.print(comma + wertf.getFilmTitel());
+                            comma = ",";
                         }
 
                     }
 
                 }
-                System.out.println("\nSchauspieler");
+                comma = "";
+                System.out.print("\r\nSchauspieler: ");
                 for (int m = 0; m < films.size(); m++){
                     for (Schauspieler werts : schauspieler.values()){
                         for (int n = 0; n< films.get(m).getSchauspieler().size(); n++){
                             if(films.get(m).getSchauspieler().get(n).equals(werts.getSchauspielerID())){
                                 if(!werts.equals(suchSchauspieler)){
                                     if(schauspielers.size() > 0){
-                                        while (o < schauspielers.size()){
-                                            if (werts.equals(schauspielers.get(o))) {
-                                                enthalten = true;
-                                            } else {
-                                                o++;
+                                        for (int o = 0; o < schauspielers.size(); o++){
+                                           if (werts.equals(schauspielers.get(o))) {
+                                               enthalten = true;
+                                                break;
                                             }
                                         }
                                     }
                                     if (!enthalten) {
                                         schauspielers.add(werts);
-                                        System.out.print(werts.getName() + ",");
+                                        System.out.print(comma + werts.getName());
+                                        comma = ",";
+                                    } else if(enthalten) {
+                                        enthalten = false;
                                     }
+
                                 }
                             }
                         }
