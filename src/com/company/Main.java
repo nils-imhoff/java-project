@@ -2,9 +2,12 @@ package com.company;
 
 import java.util.*;
 
+
+
 public class Main {
 
     public static void main(String[] args) {
+
 
         FilmDB filmDB = new FilmDB();
         ArrayList<String> genreArg = new ArrayList<>();
@@ -27,23 +30,23 @@ public class Main {
                     schauspielerArg = extractArguments(s);
                 } else if (s.contains("--film=")) {
                     filmArg = extractArguments(s);
-                } else if (s.contains("--filmnetzwerk")) {
+                } else if (s.contains("--filmnetzwerk=")) {
                     filmnetzwerkArg = extractArguments(s);
-                } else if (s.contains("--schauspielernetzwerk")){
+                } else if (s.contains("--schauspielernetzwerk=")) {
                     schauspielernetzwerkArg = extractArguments(s);
                 }
             }
-            if(filmArg.size()>=1);
-                filmDB.sucheFilm(filmArg);
+            if (filmArg.size() >= 1) ;
+            filmDB.sucheFilm(filmArg);
 
-            if(schauspielerArg.size()>=1);
-                filmDB.sucheSchauspieler(schauspielerArg);
+            if (schauspielerArg.size() >= 1) ;
+            filmDB.sucheSchauspieler(schauspielerArg);
 
-            if(filmnetzwerkArg.size()>=1);
-                filmDB.netwerkFilm(filmnetzwerkArg);
+            if (filmnetzwerkArg.size() >= 1) ;
+            filmDB.netwerkFilm(filmnetzwerkArg);
 
-            if(schauspielernetzwerkArg.size() >= 1);
-                    filmDB.netwerkSchauspieler(schauspielernetzwerkArg);
+            if (schauspielernetzwerkArg.size() >= 1) ;
+            filmDB.netwerkSchauspieler(schauspielernetzwerkArg);
 
         }
     }
@@ -57,5 +60,8 @@ public class Main {
                                 .split(",")
                 ));
     }
+
+
+
 }
 

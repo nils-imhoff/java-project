@@ -11,7 +11,6 @@ public class Film {
     private Double IMDBRating;
     private Integer filmID;
 
-    private Double currentWeight;
 
     private ArrayList<String> genreNames = new ArrayList<>();
     private ArrayList<Integer> schauspieler = new ArrayList<>();
